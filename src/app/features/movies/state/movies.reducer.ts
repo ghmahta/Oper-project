@@ -1,16 +1,8 @@
 import {createReducer, on} from '@ngrx/store';
-import {getMoviesFailure, getMoviesIsLoading, getMoviesSuccess} from './movies.actions';
-import {MovieInterface} from './movies.model';
+import {getMoviesFailure, getMoviesIsLoading, getMoviesSuccess, updateMoviesFromSearch} from './movies.actions';
+import {GetMoviesListStateModel} from './movies.model';
 
-export interface GetListStateModel {
-  data: MovieInterface[] ;
-  error: any | null;
-  loading: boolean;
-  total_pages: number,
-  pageNumber: number
-}
-
-export const initialState: GetListStateModel = {
+export const initialState: GetMoviesListStateModel = {
   data: [],
   error: null,
   loading: false,
@@ -38,4 +30,10 @@ export const MoviesReducer = createReducer(
     error,
     data: [],
   })),
+
+  on(updateMoviesFromSearch, (state, {movies, page})=>({
+    ...state,
+    loading:false,
+    data: (page == 1 ? movies : [...state.data, ...movies]),
+  }))
 );

@@ -6,8 +6,11 @@ export interface MovieInterface{
   title:string,
   vote_average:number
 }
-export interface MoviesApiModel{
-  results:MovieInterface[],
-  total_pages: number,
-  page: number
+
+export interface GetMoviesListStateModel{
+  data: any,
+  error: any,
+  loading: boolean,
+  total_pages:number,
+  pageNumber: number
 }

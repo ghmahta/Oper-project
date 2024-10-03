@@ -4,7 +4,7 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {getMoviesFailure, getMoviesIsLoading, getMoviesSuccess} from './movies.actions';
 import {defer, of} from 'rxjs';
 import {MoviesService} from './movies.service';
-import {MoviesApiModel} from './movies.model';
+import {ApiResultModel} from '../../../shared/apiResult.model';
 
 @Injectable()
 export class MoviesEffects {
@@ -18,7 +18,7 @@ export class MoviesEffects {
           ofType(getMoviesIsLoading),
           mergeMap(({pageNumber}) => {
             return this.movieService.getData(pageNumber).pipe(
-              map((data:MoviesApiModel) => getMoviesSuccess({
+              map((data:ApiResultModel) => getMoviesSuccess({
                 movies: data.results,
                 totalPage:data.total_pages,
                 page: data.page })),
