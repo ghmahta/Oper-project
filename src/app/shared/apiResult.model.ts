@@ -1,7 +1,6 @@
-import {MovieInterface} from '../features/movies/state/movies.model';
 
 export interface ApiResultModel{
-  results:MovieInterface[],
+  results:any[],
   total_pages: number,
   page: number
 }

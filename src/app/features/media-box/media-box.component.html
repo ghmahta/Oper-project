@@ -1,9 +1,9 @@
 <div class="media-box">
   <div class="media-box__image">
-    <img [src]="getPosterUrl(mediaItem.poster_path)" alt="{{ mediaItem.title }}" />
+    <img [src]="getPosterUrl(mediaItem.poster_path)" alt="{{ mediaItem?.title || mediaItem?.name }}" />
   </div>
   <div class="media-box__info">
-    <h3 class="media-box__title">{{ mediaItem.title }}</h3>
+    <h3 class="media-box__title">{{ mediaItem?.title || mediaItem?.name }}</h3>
     <p class="media-box__description">{{ mediaItem.overview }}</p>
     <div class="media-box__rating">Rating: {{ mediaItem.vote_average }}</div>
   </div>

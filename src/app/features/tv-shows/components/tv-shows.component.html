@@ -1,4 +1,4 @@
-<div class="movies">
+<div class="tv">
 
   <!-- Show a loading message while data is being fetched -->
   <div *ngIf="loading$ | async" class="loading-spinner">Loading...</div>
@@ -7,8 +7,5 @@
   <div *ngIf="error$ | async as error">Error: {{ error }}</div>
 
   <!-- Iterate through movies and display each one using the MediaBoxComponent -->
-  <div *ngIf="data$">
-    <app-media-box-container [mediaItems]=data$ [mode]="'movies'"></app-media-box-container>
-  </div>
-
+  <app-media-box-container [mediaItems]=data$ [mode]="'tv'"></app-media-box-container>
 </div>
