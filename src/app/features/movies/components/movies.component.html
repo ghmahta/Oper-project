@@ -1,0 +1,16 @@
+<div class="movies">
+
+  <!-- Show a loading message while data is being fetched -->
+  <div *ngIf="loading$ | async" class="loading-spinner">Loading...</div>
+
+  <!-- Display error message if there is an error -->
+  <div *ngIf="error$ | async as error">Error: {{ error }}</div>
+
+  <!-- Iterate through movies and display each one using the MediaBoxComponent -->
+  <div class="movies__list" *ngIf="data$ | async as movies"
+       infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+    <app-media-box *ngFor="let movie of movies" [mediaItem]="movie"
+                   class="movies__item">
+    </app-media-box>
+  </div>
+</div>

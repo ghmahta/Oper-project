@@ -1,0 +1,50 @@
+.media-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  min-height: 850px; // Ensure a minimum height for uniformity
+  max-height: 850px;
+
+
+  &__image {
+    width: 100%;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    padding: 16px;
+    background-color: #fff;
+  }
+  &__title {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  &__description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 12px;
+    max-height: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__rating {
+    font-size: 0.8em;
+    color: #ffcc00;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
