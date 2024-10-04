@@ -10,6 +10,8 @@ import {SearchReducer} from './features/search/state/search.reducer';
 import {SearchEffects} from './features/search/state/search.effects';
 import {TvShowsReducer} from './features/tv-shows/state/tv-shows.reducer';
 import {TvShowsEffects} from './features/tv-shows/state/tv-shows.effects';
+import {MediaDetailsReducer} from './features/media-details/state/media-details.reducer';
+import {MediaDetailsEffects} from './features/media-details/state/media-details.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,11 +20,13 @@ export const appConfig: ApplicationConfig = {
       movieState: MoviesReducer ,
       tvShowsState: TvShowsReducer,
       searchState: SearchReducer,
+      mediaDetailsState: MediaDetailsReducer
     }),
     provideEffects([
       MoviesEffects,
       TvShowsEffects,
-      SearchEffects
+      SearchEffects,
+      MediaDetailsEffects
     ]),
     provideRouter(routes),
   ],

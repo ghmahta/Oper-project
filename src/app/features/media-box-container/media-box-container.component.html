@@ -1,0 +1,10 @@
+<div class="media-box-container" *ngIf="mediaItems | async as mediaItem"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="300"
+     (scrolled)="onScroll()">
+  <app-media-box *ngFor="let item of mediaItem"
+                 [mediaItem]="item"
+                 class="media-box-container__item">
+  </app-media-box>
+</div>
