@@ -22,7 +22,7 @@ export class MoviesEffects {
                 movies: data.results,
                 totalPage:data.total_pages,
                 page: data.page })),
-              catchError((error) => of(getMoviesFailure({ error })))
+              catchError((error) => of(getMoviesFailure({ error:error.error })))
             );
           })
         )

@@ -6,6 +6,8 @@ import {Observable} from 'rxjs';
 import {GetMediaDetailsStateModel, MovieDetailModel} from '../state/media-details.model';
 import {CommonModule} from '@angular/common';
 import {LoadingComponent} from "../../loading/loading.component";
+import {environment} from '../../../../environments/envionment';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 @Component({
   selector: 'app-media-details',
@@ -17,7 +19,7 @@ import {LoadingComponent} from "../../loading/loading.component";
 export class MediaDetailsComponent implements OnInit, DoCheck {
   mediaDetail$: Observable<any>;
   loading$:Observable<boolean>;
-  error$: Observable<any>;
+  error$: Observable<ApiErrorModel | null>;
   mediaDetails: any;
 
   constructor(private route: ActivatedRoute, private store: Store<{ mediaDetailsState: GetMediaDetailsStateModel }>) {
@@ -61,5 +63,9 @@ export class MediaDetailsComponent implements OnInit, DoCheck {
 
   getCountries(): string {
     return this.mediaDetails.production_countries.map((country: { name: string }) => country.name).join(', ');
+  }
+
+  getPosterUrl(): string{
+    return `${environment.imageBaseUrl}${this.mediaDetails?.poster_path}`
   }
 }

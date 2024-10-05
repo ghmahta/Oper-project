@@ -1,6 +1,8 @@
+import {ApiErrorModel} from '../../../shared/apiError.model';
+
 export interface GetMediaDetailsStateModel{
   data: any;
-  error: any,
+  error: ApiErrorModel| null,
   loading: boolean,
 }
 interface GenreModel{

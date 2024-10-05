@@ -22,7 +22,7 @@ export class MediaDetailsEffects {
             return this.mediaDetailsService.getData(id, mediaType).pipe(
               map((data:ApiResultModel) => getMediaDetailsSuccess({
                 details: data })),
-              catchError((error) => of(getMediaDetailsFailure({ error })))
+              catchError((error) => of(getMediaDetailsFailure({ error:error.error })))
             );
           })
         )

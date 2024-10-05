@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {TvShowModel} from './tv-shows.model';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 export const getTvShowsIsLoading = createAction(
   'get Tv Shows is Loading',
@@ -11,7 +12,7 @@ export const getTvShowsSuccess = createAction(
 );
 export const getTvShowsFailure = createAction(
   'get Tv Shows Failure',
-  props<{ error: any }>()
+  props<{ error: ApiErrorModel | null }>()
 );
 
 export const updateTvShowsFromSearch = createAction(

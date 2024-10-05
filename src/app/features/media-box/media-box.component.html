@@ -1,9 +1,10 @@
 <div class="media-box" (click)="routeDetail()">
   <div class="media-box__image">
-    <img [src]="getPosterUrl(mediaItem.poster_path)" alt="{{ mediaItem?.title || mediaItem?.name }}" />
+    <img [src]="getPosterUrl(mediaItem.poster_path)" alt="{{ decideForTitleAndName() }}" />
   </div>
   <div class="media-box__info">
-    <h3 class="media-box__title">{{ mediaItem?.title || mediaItem?.name }}</h3>
+    <h3 class="media-box__title">
+      {{decideForTitleAndName()}}</h3>
     <p class="media-box__description">{{ mediaItem.overview }}</p>
     <div class="media-box__rating">Rating: {{ mediaItem.vote_average }}</div>
   </div>

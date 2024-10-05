@@ -1,3 +1,5 @@
+import {ApiErrorModel} from '../../../shared/apiError.model';
+
 export interface TvShowModel{
   id:number;
   name:string;
@@ -7,8 +9,8 @@ export interface TvShowModel{
 }
 
 export interface GetTvShowsListStateModel{
-  data: any,
-  error: any,
+  data: TvShowModel[],
+  error: ApiErrorModel |null,
   loading: boolean,
   total_pages:number,
   pageNumber: number

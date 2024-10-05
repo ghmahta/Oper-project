@@ -20,7 +20,7 @@ export class TvShowsEffects {
                 tvShows: data.results,
                 totalPage:data.total_pages,
                 page: data.page })),
-              catchError((error) => of(getTvShowsFailure({ error })))
+              catchError((error) => of(getTvShowsFailure({ error:error.error })))
             );
           })
         )

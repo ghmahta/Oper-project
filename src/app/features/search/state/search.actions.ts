@@ -1,4 +1,5 @@
 import {createAction, props} from '@ngrx/store';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 export const searchIsLoading = createAction(
   'search is Loading',
@@ -10,5 +11,5 @@ export const searchSuccess = createAction(
 );
 export const searchFailure = createAction(
   'search Failure',
-  props<{ error: any }>()
+  props<{ error: ApiErrorModel| null }>()
 );

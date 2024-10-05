@@ -1,4 +1,6 @@
-export interface MovieInterface{
+import {ApiErrorModel} from '../../../shared/apiError.model';
+
+export interface MovieModel{
   id:number,
   original_title:string,
   overview:string,
@@ -8,8 +10,8 @@ export interface MovieInterface{
 }
 
 export interface GetMoviesListStateModel{
-  data: any,
-  error: any,
+  data: MovieModel[],
+  error: ApiErrorModel| null,
   loading: boolean,
   total_pages:number,
   pageNumber: number

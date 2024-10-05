@@ -9,9 +9,10 @@ import {SearchStateModel} from '../../search/state/search.model';
 import {map} from 'rxjs/operators';
 import {searchIsLoading} from '../../search/state/search.actions';
 import {convertObservableToString} from '../../../shared/convertObservableToString';
-import {GetTvShowsListStateModel} from '../state/tv-shows.model';
+import {GetTvShowsListStateModel, TvShowModel} from '../state/tv-shows.model';
 import {getTvShowsIsLoading} from '../state/tv-shows.actions';
 import {LoadingComponent} from "../../loading/loading.component";
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 @Component({
   selector: 'app-tv-shows',
@@ -29,9 +30,9 @@ import {LoadingComponent} from "../../loading/loading.component";
   styleUrl: './tv-shows.component.scss'
 })
 export class TvShowsComponent implements OnInit{
-  data$: Observable<any[]>;
+  data$: Observable<TvShowModel[]>;
   loading$: Observable<boolean>;
-  error$: Observable<any>;
+  error$: Observable<ApiErrorModel | null>;
   page: number = 1;
 
   constructor(private store: Store<{ tvShowsState: GetTvShowsListStateModel, searchState: SearchStateModel }>) {

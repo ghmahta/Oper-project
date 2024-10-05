@@ -1,4 +1,5 @@
 import {createAction, props} from '@ngrx/store';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 export const getMediaDetailsIsLoading = createAction(
   'get Media Details is Loading',
@@ -10,5 +11,5 @@ export const getMediaDetailsSuccess = createAction(
 );
 export const getMediaDetailsFailure = createAction(
   'get Media Details Failure',
-  props<{ error: any }>()
+  props<{ error: ApiErrorModel }>()
 );

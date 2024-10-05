@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
-import {MovieInterface} from './movies.model';
+import {MovieModel} from './movies.model';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 export const getMoviesIsLoading = createAction(
   'get Movies is Loading',
@@ -7,14 +8,14 @@ export const getMoviesIsLoading = createAction(
 );
 export const getMoviesSuccess = createAction(
   'get Movies Success',
-  props<{ movies: MovieInterface[], totalPage: number, page: number }>()
+  props<{ movies: MovieModel[], totalPage: number, page: number }>()
 );
 export const getMoviesFailure = createAction(
   'get Movies Failure',
-  props<{ error: any }>()
+  props<{ error: ApiErrorModel }>()
 );
 
 export const updateMoviesFromSearch = createAction(
   'update Movies from Search',
-  props<{movies:MovieInterface[], page: number}>()
+  props<{movies:MovieModel[], page: number}>()
 )

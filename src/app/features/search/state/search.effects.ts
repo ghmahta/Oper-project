@@ -29,7 +29,7 @@ export class SearchEffects {
                   updateMoviesFromSearch({movies: data.results, page: data.page})
                 ]
               }),
-              catchError((error) => of(searchFailure({error})))
+              catchError((error) => of(searchFailure({error:error.error})))
             );
           })
         )

@@ -6,12 +6,13 @@ import {CommonModule} from '@angular/common';
 import {MediaBoxComponent} from '../../media-box/media-box.component';
 import {InfiniteScrollDirective} from 'ngx-infinite-scroll';
 import {map} from 'rxjs/operators';
-import {GetMoviesListStateModel} from '../state/movies.model';
+import {GetMoviesListStateModel, MovieModel} from '../state/movies.model';
 import {SearchStateModel} from '../../search/state/search.model';
 import {searchIsLoading} from '../../search/state/search.actions';
 import {convertObservableToString} from '../../../shared/convertObservableToString';
 import {MediaBoxContainerComponent} from '../../media-box-container/media-box-container.component';
 import {LoadingComponent} from '../../loading/loading.component';
+import {ApiErrorModel} from '../../../shared/apiError.model';
 
 @Component({
   selector: 'app-movies',
@@ -21,9 +22,9 @@ import {LoadingComponent} from '../../loading/loading.component';
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent implements OnInit, DoCheck {
-  data$: Observable<any[]>;
+  data$: Observable<MovieModel[]>;
   loading$: Observable<boolean>;
-  error$: Observable<any>;
+  error$: Observable<ApiErrorModel| null>;
   page: number = 1;
 
   constructor(private store: Store<{ movieState: GetMoviesListStateModel }>) {
@@ -38,8 +39,8 @@ export class MoviesComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     // Check for changes in the internal state
-    if (this.data$) {
-      this.data$.subscribe((data) => {
+    if (this.error$) {
+      this.error$.subscribe((data) => {
         console.log(data)
       })
     }

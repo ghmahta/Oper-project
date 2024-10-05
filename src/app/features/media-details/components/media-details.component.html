@@ -5,13 +5,13 @@
   </div>
 
   <!-- Display error message if there is an error -->
-  <div *ngIf="error$ | async as error">Error: {{ error }}</div>
+  <div *ngIf="error$ | async as error">Error: {{ error.status_message }}</div>
 
   <!-- Display details in here -->
   <div *ngIf="mediaDetail$ | async as mediaDetail">
     <div class="media-details__header">
       <img class="media-details__poster"
-           [src]="'https://image.tmdb.org/t/p/w500' + mediaDetail?.poster_path" alt="{{ mediaDetail.title}}">
+           [src]="getPosterUrl()" alt="{{ mediaDetail.title}}">
       <div class="media-details__info">
         <h2 class="media-details__title">{{ mediaDetail.title || mediaDetail?.name }}</h2>
         <p class="media-details__overview">{{ mediaDetail.overview }}</p>

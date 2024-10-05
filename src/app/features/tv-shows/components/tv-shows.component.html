@@ -6,7 +6,7 @@
   </div>
 
   <!-- Display error message if there is an error -->
-  <div *ngIf="error$ | async as error">Error: {{ error }}</div>
+  <div *ngIf="error$ | async as error">Error: {{ error.status_message }}</div>
 
   <!-- Iterate through movies and display each one using the MediaBoxComponent -->
   <app-media-box-container [mediaItems]=data$ [mode]="'tv'"></app-media-box-container>
