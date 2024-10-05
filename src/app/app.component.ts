@@ -18,7 +18,7 @@ import {filter} from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
-  title = 'oper-project';
+  title = 'Media App-Oper Interview';
   constructor(private router: Router, private viewportScroller: ViewportScroller) {}
 
   ngOnInit() {
