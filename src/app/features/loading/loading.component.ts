@@ -9,9 +9,9 @@ import { trigger, style, animate, transition, keyframes } from '@angular/animati
   animations: [
     trigger('spinner', [
       transition('* => *', [
-        animate('1s infinite', keyframes([
-          style({ transform: 'rotate(0deg)' }),
-          style({ transform: 'rotate(360deg)' }),
+        animate('1s linear', keyframes([
+          style({ transform: 'rotate(0deg)', offset: 0 }),
+          style({ transform: 'rotate(360deg)', offset: 1 })
         ]))
       ])
     ])
