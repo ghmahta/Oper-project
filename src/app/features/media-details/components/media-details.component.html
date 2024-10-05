@@ -15,8 +15,8 @@
       <div class="media-details__info">
         <h2 class="media-details__title">{{ mediaDetail.title || mediaDetail?.name }}</h2>
         <p class="media-details__overview">{{ mediaDetail.overview }}</p>
-        <p class="media-details__genres">Genres: {{ getGenres() }}</p>
-        <p class="media-details__languages">Languages: {{ getLanguages() }}</p>
+        <p class="media-details__genres">Genres: {{mediaDetail?.genres?.length && getGenres() }}</p>
+        <p class="media-details__languages">Languages: {{mediaDetail?.languages?.length && getLanguages() }}</p>
         <p class="media-details__release-date">Release
           Date: {{ mediaDetail.release_date || mediaDetail?.first_air_date }}</p>
         <p class="media-details__vote">Rating: {{ mediaDetail.vote_average }} / 10 ({{ mediaDetail?.vote_count }}
@@ -24,9 +24,9 @@
       </div>
     </div>
     <div class="media-details__additional-info">
-      <p>Countries: {{ getCountries() }}</p>
+      <p>Countries: {{mediaDetail?.country?.length && getCountries() }}</p>
       <p *ngIf="mediaDetail.runtime">Runtime: {{ mediaDetail.runtime }} mins</p>
-      <p *ngIf="mediaDetail.episode_run_time.length > 0">Episodes: {{ mediaDetail.number_of_episodes }} |
+      <p *ngIf="mediaDetail?.episode_run_time?.length > 0">Episodes: {{ mediaDetail.number_of_episodes }} |
         Seasons: {{ mediaDetail.number_of_seasons }}</p>
     </div>
   </div>

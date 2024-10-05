@@ -22,7 +22,8 @@ export const MediaDetailsReducer = createReducer(
   })),
   on(getMediaDetailsSuccess, (state, {details}) => ({
     ...state,
-    data: details
+    data: details,
+    loading: false
   })),
   on(getMediaDetailsFailure, (state, {error}) => ({
     ...state,

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {debounceTime, distinctUntilChanged} from 'rxjs';
 import {searchIsLoading} from '../state/search.actions';
 import {CommonModule, ViewportScroller} from '@angular/common';
 import {getMoviesIsLoading} from '../../movies/state/movies.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -16,12 +17,14 @@ import {getMoviesIsLoading} from '../../movies/state/movies.actions';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit{
   searchForm: FormGroup;
   queryMinLength: number = 3; //minimum length of query to call search
   searchDelay: number = 100; //the time after last character to call search - milliseconds
+  currentTab:string ='';
 
   constructor(private store: Store,
+              private router: Router,
               private fb: FormBuilder,
               private viewportScroller: ViewportScroller) {
     this.searchForm = this.fb.group({
@@ -42,5 +45,19 @@ export class SearchComponent {
           this.store.dispatch(getMoviesIsLoading({pageNumber:1}))
         }
       });
+  }
+
+  ngOnInit(): void {
+    // Subscribe to router events to detect route changes
+    this.router.events.subscribe(() => {
+      this.currentTab = this.router.url;
+
+      // Disable or enable the input based on the route
+      if (this.currentTab.includes('/details')) {
+        this.searchForm.get('query')?.disable();
+      } else {
+        this.searchForm.get('query')?.enable();
+      }
+    });
   }
 }
