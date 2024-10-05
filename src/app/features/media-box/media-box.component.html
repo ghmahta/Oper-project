@@ -1,4 +1,4 @@
-<div class="media-box">
+<div class="media-box" (click)="routeDetail()">
   <div class="media-box__image">
     <img [src]="getPosterUrl(mediaItem.poster_path)" alt="{{ mediaItem?.title || mediaItem?.name }}" />
   </div>

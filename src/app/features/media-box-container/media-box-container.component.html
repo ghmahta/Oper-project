@@ -5,6 +5,7 @@
      (scrolled)="onScroll()">
   <app-media-box *ngFor="let item of mediaItem"
                  [mediaItem]="item"
+                 [mode]="mode"
                  class="media-box-container__item">
   </app-media-box>
 </div>
