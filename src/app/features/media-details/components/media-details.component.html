@@ -1,19 +1,34 @@
-<div class="media-details" *ngIf="mediaDetail$ | async as mediaDetail">
-  <div class="media-details__header">
-    <img class="media-details__poster"
-         [src]="'https://image.tmdb.org/t/p/w500' + mediaDetail?.poster_path" alt="{{ mediaDetail.title}}">
-    <div class="media-details__info">
-      <h2 class="media-details__title">{{ mediaDetail.title || mediaDetail?.name }}</h2>
-      <p class="media-details__overview">{{ mediaDetail.overview }}</p>
-      <p class="media-details__genres">Genres: {{ getGenres() }}</p>
-      <p class="media-details__languages">Languages: {{ getLanguages() }}</p>
-      <p class="media-details__release-date">Release Date: {{ mediaDetail.release_date || mediaDetail?.first_air_date }}</p>
-      <p class="media-details__vote">Rating: {{ mediaDetail.vote_average }} / 10 ({{ mediaDetail?.vote_count }} votes)</p>
+<div class="media-details">
+  <!-- Show a loading message while data is being fetched -->
+  <div *ngIf="loading$ | async" class="loading-spinner">
+    <app-loading></app-loading>
+  </div>
+
+  <!-- Display error message if there is an error -->
+  <div *ngIf="error$ | async as error">Error: {{ error }}</div>
+
+  <!-- Display details in here -->
+  <div *ngIf="mediaDetail$ | async as mediaDetail">
+    <div class="media-details__header">
+      <img class="media-details__poster"
+           [src]="'https://image.tmdb.org/t/p/w500' + mediaDetail?.poster_path" alt="{{ mediaDetail.title}}">
+      <div class="media-details__info">
+        <h2 class="media-details__title">{{ mediaDetail.title || mediaDetail?.name }}</h2>
+        <p class="media-details__overview">{{ mediaDetail.overview }}</p>
+        <p class="media-details__genres">Genres: {{ getGenres() }}</p>
+        <p class="media-details__languages">Languages: {{ getLanguages() }}</p>
+        <p class="media-details__release-date">Release
+          Date: {{ mediaDetail.release_date || mediaDetail?.first_air_date }}</p>
+        <p class="media-details__vote">Rating: {{ mediaDetail.vote_average }} / 10 ({{ mediaDetail?.vote_count }}
+          votes)</p>
+      </div>
+    </div>
+    <div class="media-details__additional-info">
+      <p>Countries: {{ getCountries() }}</p>
+      <p *ngIf="mediaDetail.runtime">Runtime: {{ mediaDetail.runtime }} mins</p>
+      <p *ngIf="mediaDetail.episode_run_time.length > 0">Episodes: {{ mediaDetail.number_of_episodes }} |
+        Seasons: {{ mediaDetail.number_of_seasons }}</p>
     </div>
   </div>
-  <div class="media-details__additional-info">
-    <p>Countries: {{ getCountries() }}</p>
-    <p *ngIf="mediaDetail.runtime">Runtime: {{ mediaDetail.runtime }} mins</p>
-    <p *ngIf="mediaDetail.episode_run_time.length > 0">Episodes: {{ mediaDetail.number_of_episodes }} | Seasons: {{ mediaDetail.number_of_seasons }}</p>
-  </div>
+
 </div>

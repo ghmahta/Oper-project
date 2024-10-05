@@ -11,12 +11,13 @@ import {SearchStateModel} from '../../search/state/search.model';
 import {searchIsLoading} from '../../search/state/search.actions';
 import {convertObservableToString} from '../../../shared/convertObservableToString';
 import {MediaBoxContainerComponent} from '../../media-box-container/media-box-container.component';
+import {LoadingComponent} from '../../loading/loading.component';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   standalone: true,
-  imports: [CommonModule, MediaBoxComponent, InfiniteScrollDirective, MediaBoxContainerComponent],
+  imports: [CommonModule, MediaBoxComponent, InfiniteScrollDirective, MediaBoxContainerComponent, LoadingComponent],
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent implements OnInit, DoCheck {

@@ -5,20 +5,25 @@ import {getMediaDetailsIsLoading} from '../state/media-details.actions';
 import {Observable} from 'rxjs';
 import {GetMediaDetailsStateModel, MovieDetailModel} from '../state/media-details.model';
 import {CommonModule} from '@angular/common';
+import {LoadingComponent} from "../../loading/loading.component";
 
 @Component({
   selector: 'app-media-details',
   standalone: true,
-  imports: [CommonModule],
+    imports: [CommonModule, LoadingComponent],
   templateUrl: './media-details.component.html',
   styleUrl: './media-details.component.scss'
 })
 export class MediaDetailsComponent implements OnInit, DoCheck {
   mediaDetail$: Observable<any>;
+  loading$:Observable<boolean>;
+  error$: Observable<any>;
   mediaDetails: any;
 
   constructor(private route: ActivatedRoute, private store: Store<{ mediaDetailsState: GetMediaDetailsStateModel }>) {
     this.mediaDetail$ = store.select(state=>state.mediaDetailsState.data)
+    this.loading$ = store.select(state=>state.mediaDetailsState.loading)
+    this.error$ = store.select(state=>state.mediaDetailsState.error)
   }
 
   ngOnInit(): void {

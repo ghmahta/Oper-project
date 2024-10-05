@@ -1,7 +1,9 @@
 <div class="movies">
 
   <!-- Show a loading message while data is being fetched -->
-  <div *ngIf="loading$ | async" class="loading-spinner">Loading...</div>
+  <div *ngIf="loading$ | async" class="loading-spinner">
+    <app-loading></app-loading>
+  </div>
 
   <!-- Display error message if there is an error -->
   <div *ngIf="error$ | async as error">Error: {{ error }}</div>

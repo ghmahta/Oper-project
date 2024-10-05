@@ -11,18 +11,20 @@ import {searchIsLoading} from '../../search/state/search.actions';
 import {convertObservableToString} from '../../../shared/convertObservableToString';
 import {GetTvShowsListStateModel} from '../state/tv-shows.model';
 import {getTvShowsIsLoading} from '../state/tv-shows.actions';
+import {LoadingComponent} from "../../loading/loading.component";
 
 @Component({
   selector: 'app-tv-shows',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    InfiniteScrollDirective,
-    MediaBoxComponent,
-    NgForOf,
-    NgIf,
-    MediaBoxContainerComponent
-  ],
+    imports: [
+        AsyncPipe,
+        InfiniteScrollDirective,
+        MediaBoxComponent,
+        NgForOf,
+        NgIf,
+        MediaBoxContainerComponent,
+        LoadingComponent
+    ],
   templateUrl: './tv-shows.component.html',
   styleUrl: './tv-shows.component.scss'
 })
