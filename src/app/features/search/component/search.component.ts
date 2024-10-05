@@ -18,6 +18,8 @@ import {getMoviesIsLoading} from '../../movies/state/movies.actions';
 })
 export class SearchComponent {
   searchForm: FormGroup;
+  queryMinLength: number = 3; //minimum length of query to call search
+  searchDelay: number = 100; //the time after last character to call search - milliseconds
 
   constructor(private store: Store,
               private fb: FormBuilder,
@@ -28,11 +30,11 @@ export class SearchComponent {
 
     this.searchForm.get('query')?.valueChanges
       .pipe(
-        debounceTime(300), // Wait for 300ms pause in events
+        debounceTime(this.searchDelay), // Wait for 300ms pause in events
         distinctUntilChanged() // Ignore if next search term is the same as previous
       )
       .subscribe(query => {
-        if (query.length >= 3) {
+        if (query.length >= this.queryMinLength) {
           this.store.dispatch(searchIsLoading({param: query, pageNumber: 1, mode:"movie"}));
         }else if(query.length == 0){
           //start from first
