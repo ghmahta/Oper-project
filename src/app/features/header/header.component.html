@@ -5,8 +5,14 @@
   </div>
   <nav class="header__nav">
     <ul class="header__list">
-      <li class="header__item"><a routerLink="/tv-shows" class="header__link">TV Shows</a></li>
-      <li class="header__item"><a routerLink="/movies" class="header__link">Movies</a></li>
+      <li class="header__item">
+        <a routerLink="/tv-shows" [className]="currentUrl=='/tv-shows'?'header__link header__link__active':'header__link'">
+          TV Shows</a>
+      </li>
+      <li class="header__item">
+        <a routerLink="/movies" [className]="currentUrl=='/movies'?'header__link__active header__link':'header__link'">
+          Movies</a>
+      </li>
     </ul>
   </nav>
   <app-search />
